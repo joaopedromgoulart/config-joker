@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "config-joker"
+version = "0.1.0"
+description = "A package to ease usage of different configuration conditions in your projects."
+authors = ["Joao Pedro Mendes Goulart"]
+readme = "README.md"
+packages = [{include = "config_joker"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pydantic = "^1.10.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
