@@ -70,11 +70,34 @@ class TestConfigRequired:
         config = build_default_config()
         assert config.required(key='key') == '1'
         
-    def test_find_required_value_with_type_convertion(self):
+    def test_find_required_value_with_type_selection(self):
         config = build_default_config()
         assert config.required(key='key', value_type=int) == 1
 
-    def test_find_required_value_whithout_response_from_sources(self):
+    def test_dont_find_required_value(self):
         config = build_default_config()
         with pytest.raises(RequiredKeyNotFound):
             config.required(key='made_up_key')
+
+
+class TestConfigOptional:
+    def test_find_optional_value_with_no_type_selection(self):
+        config = build_default_config()
+        assert config.optional(key='key') == '1'
+
+    def test_find_optional_value_with_type_selection(self):
+        config = build_default_config()
+        assert config.optional(key='key', value_type=int) == 1
+
+    def test_dont_find_optional_value_without_default(self):
+        config = build_default_config()
+        assert config.optional(key='made_up_key') == None
+
+    def test_dont_find_optional_value_with_default(self):
+        config = build_default_config()
+        assert config.optional(key='made_up_key', default='value') == 'value'
+
+    def test_dont_find_optional_value_with_default_and_type_selection(self):
+        'The type selection cant impact in the default response'
+        config = build_default_config()
+        assert config.optional(key='made_up_key', value_type=int ,default='1') == '1'

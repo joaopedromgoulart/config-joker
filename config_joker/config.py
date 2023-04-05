@@ -27,3 +27,12 @@ class Config:
         if value_type:
             result = value_type(result)
         return result
+
+    def optional(self, key: str, value_type: Callable = None, default: Any = None) -> Any:
+        source_response = self._get(key=key)
+        if not source_response.exists:
+            return default
+        result = source_response.value
+        if value_type:
+            result = value_type(result)
+        return result
