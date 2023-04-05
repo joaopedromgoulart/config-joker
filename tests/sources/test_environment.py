@@ -1,6 +1,7 @@
-import mock
 import pytest
 import os
+
+from unittest import mock
 from config_joker.sources.environment import EnvironmentSource
 
 
