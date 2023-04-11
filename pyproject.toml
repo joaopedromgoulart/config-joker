@@ -6,9 +6,9 @@ authors = ["Joao Pedro Mendes Goulart"]
 readme = "README.md"
 packages = [{include = "config_joker"}]
 
+
 [tool.poetry.dependencies]
 python = "^3.8"
-pydantic = "^1.10.7"
 
 
 [build-system]
