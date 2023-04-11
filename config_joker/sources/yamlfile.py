@@ -1,6 +1,7 @@
 from yaml import safe_load
 
 from config_joker.sources.source import Source, SourceResponse
+from config_joker.utils.parser import dict_extractor
 
 
 class YamlFileSource(Source):
@@ -10,7 +11,7 @@ class YamlFileSource(Source):
 
     def get_value(self, key: str) -> SourceResponse:
         try:
-            response = self._data[key]
+            response = dict_extractor(path=key, data=self._data)
             return SourceResponse(
                 exists=True,
                 value=response

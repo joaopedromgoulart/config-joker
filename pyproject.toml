@@ -9,6 +9,7 @@ packages = [{include = "config_joker"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+regex = "^2023.3.23"
 
 
 [build-system]
