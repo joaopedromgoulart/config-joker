@@ -5,8 +5,7 @@ def example_config():
     os.environ['KEY'] = 'VALUE'
 
     # Running example
-    from config_joker.config import Config
-    from config_joker.sources.environment import EnvironmentSource
+    from config_joker import Config, EnvironmentSource
 
     config = Config(
         sources=[

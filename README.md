@@ -7,8 +7,7 @@ Obs.: There are some examples in the [examples folder](https://github.com/joaope
 
 Import the sources you'll use and the Config class:
 
-    from config_joker.sources.environment import EnvironmentSource
-    from config_joker.config import Config
+    from config_joker Config, EnvironmentSource
 
 Initialize the config class implementing the sources you want to use:
 

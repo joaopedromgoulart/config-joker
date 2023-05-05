@@ -4,7 +4,11 @@ version = "0.2.0"
 description = "A package to ease usage of different configuration conditions in your projects."
 authors = ["Joao Pedro Mendes Goulart"]
 readme = "README.md"
-packages = [{include = "config_joker"}]
+packages = [
+    {include = "./config_joker/config.py"},
+    {include = "./config_joker/sources/environment.py"},
+    {include = "./config_joker/sources/yamlfile.py"}
+]
 
 
 [tool.poetry.dependencies]
