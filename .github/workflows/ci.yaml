@@ -18,6 +18,7 @@ jobs:
         run: |
           pip install poetry
           poetry install
+          poetry add pytest
 
       - name: Test with pytest
         run: poetry run pytest --cov . -n 2
