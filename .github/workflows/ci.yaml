@@ -23,20 +23,20 @@ jobs:
       - name: Test with pytest
         run: poetry run pytest
   
-  build-and-publish-pypi:
-    # if: ${{ github.ref == 'refs/heads/main' }}
-    needs: tests
-    runs-on: ubuntu-lates
-    steps:
-      - uses: actions/checkout@v3
-      - name: build and publish
-        uses: JRubics/poetry-publish@v1.16
-        with:
-          python_version: "3.8"
-          poetry_version: "==1.4.2" # (PIP version specifier syntax)
-          pypi_token: ${{ secrets.TOKEN_AUTH_PYPI }}
-          build_format: "sdist"
-          allow_poetry_pre_release: "yes"
-          ignore_dev_requirements: "yes"
-          repository_name: "testpypi"
-          repository_url: "https://test.pypi.org/legacy/"
+  # build-and-publish-pypi:
+  #   # if: ${{ github.ref == 'refs/heads/main' }}
+  #   needs: tests
+  #   runs-on: ubuntu-lates
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: build and publish
+  #       uses: JRubics/poetry-publish@v1.16
+  #       with:
+  #         python_version: "3.8"
+  #         poetry_version: "==1.4.2" # (PIP version specifier syntax)
+  #         pypi_token: ${{ secrets.TOKEN_AUTH_PYPI }}
+  #         build_format: "sdist"
+  #         allow_poetry_pre_release: "yes"
+  #         ignore_dev_requirements: "yes"
+  #         repository_name: "testpypi"
+  #         repository_url: "https://test.pypi.org/legacy/"
