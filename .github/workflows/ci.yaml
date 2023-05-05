@@ -33,10 +33,5 @@ jobs:
         uses: JRubics/poetry-publish@v1.16
         with:
           python_version: "3.8"
-          poetry_version: "==1.4.2" # (PIP version specifier syntax)
+          poetry_version: "==1.4.2"
           pypi_token: ${{ secrets.TOKEN_AUTH_PYPI }}
-          build_format: "sdist"
-          allow_poetry_pre_release: "yes"
-          ignore_dev_requirements: "yes"
-          repository_name: "testpypi"
-          repository_url: "https://test.pypi.org/legacy/"
