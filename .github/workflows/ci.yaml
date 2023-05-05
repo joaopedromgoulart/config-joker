@@ -14,7 +14,7 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install Poetry
+      - name: Install Poetry@v1
         uses: actions/poetry-action
 
       - name: Cache Poetry virtualenv
