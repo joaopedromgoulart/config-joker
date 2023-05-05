@@ -21,4 +21,4 @@ jobs:
           poetry add pytest
 
       - name: Test with pytest
-        run: poetry run pytest /tests
+        run: poetry run pytest
