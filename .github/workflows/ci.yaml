@@ -24,6 +24,8 @@ jobs:
         run: poetry run pytest
   
   build-and-publish-pypi:
+    # if: ${{ github.ref == 'refs/heads/main' }}
+    needs: tests
     runs-on: ubuntu-lates
     steps:
       - uses: actions/checkout@v3
