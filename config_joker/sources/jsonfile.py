@@ -1,12 +1,12 @@
-from yaml import safe_load
+import json
 
 from config_joker.sources.source import SourceAsDict
 
 
-class YamlFileSource(SourceAsDict):
+class JsonFileSource(SourceAsDict):
     def __init__(self, file_path: str, config_path: str = None) -> None:
         super().__init__(file_path, config_path)
 
     def _load_from_file(self, path: str) -> dict:
         with open(path) as f:
-            return safe_load(f)
+            return json.load(f)

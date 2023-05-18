@@ -1,0 +1,11 @@
+{
+    "external_config_key":[
+        {
+            "config": {
+                "external_key": [
+                    {"key": "value"}
+                ]
+            }
+        }
+    ]
+}
