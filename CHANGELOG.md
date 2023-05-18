@@ -1,3 +1,17 @@
+## 0.5.0 (2023-05-17)
+
+### Feat
+
+- **sources.json**: add source para arquivos json
+
+### Fix
+
+- **sources.yamlfile**: Fix file load
+
+### Refactor
+
+- **sources.source-sources.yamlfile**: Base class to sources thet cam be transformed to dicts
+
 ## 0.4.0 (2023-05-17)
 
 ### Feat
