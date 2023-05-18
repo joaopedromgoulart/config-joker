@@ -6,8 +6,8 @@ from config_joker.utils.parser import dict_extractor
 
 class YamlFileSource(Source):
     def __init__(self, file_path: str, config_path: str = None) -> None:
-        self._file_path = file_path
-        self._file_contents = safe_load(self._file_path)
+        with open(file_path) as f:
+            self._file_contents = safe_load(f)
         if config_path:
             self._data = dict_extractor(path=config_path, data=self._file_contents)
         else:
