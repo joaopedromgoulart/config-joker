@@ -1,4 +1,4 @@
 external_config_key:
-  - config_x:
+  - config:
       external_key:
-        - key_x: value_x
+        - key: value
