@@ -35,3 +35,32 @@ class TestYamlFileSourceGetValue:
         result = yaml_source.get_value(key='key1.key2[1]')
         assert result.value == 'value'
         assert result.exists == True
+    
+    @mock.patch('config_joker.sources.yamlfile.safe_load')
+    def test_get_existing_neasted_dict_config(self, mock_yaml_file: mock.MagicMock):
+        mock_yaml_file.return_value =  {
+            'config_key': {
+                'key': 'value'
+            }
+        }
+        yaml_source = YamlFileSource(file_path='path', config_path='config_key')
+        mock_yaml_file.assert_called_with('path')
+        result = yaml_source.get_value(key='key')
+        assert result.value == 'value'
+        assert result.exists == True
+    
+    @mock.patch('config_joker.sources.yamlfile.safe_load')
+    def test_get_existing_neasted_dict_and_list_config(self, mock_yaml_file: mock.MagicMock):
+        mock_yaml_file.return_value =  {
+            'config_key': [
+                {},
+                {
+                    'key': 'value'
+                }
+            ]
+        }
+        yaml_source = YamlFileSource(file_path='path', config_path='config_key[1]')
+        mock_yaml_file.assert_called_with('path')
+        result = yaml_source.get_value(key='key')
+        assert result.value == 'value'
+        assert result.exists == True

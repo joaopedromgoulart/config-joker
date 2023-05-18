@@ -5,9 +5,13 @@ from config_joker.utils.parser import dict_extractor
 
 
 class YamlFileSource(Source):
-    def __init__(self, file_path: str) -> None:
+    def __init__(self, file_path: str, config_path: str = None) -> None:
         self._file_path = file_path
-        self._data = safe_load(self._file_path)
+        self._file_contents = safe_load(self._file_path)
+        if config_path:
+            self._data = dict_extractor(path=config_path, data=self._file_contents)
+        else:
+            self._data = self._file_contents
 
     def get_value(self, key: str) -> SourceResponse:
         try:
