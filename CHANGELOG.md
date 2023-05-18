@@ -1,3 +1,9 @@
+## 0.4.0 (2023-05-17)
+
+### Feat
+
+- **yamlfile.YamlFileSource**: add possibilidade de apontar para paths conplexos para buscar configuracoes
+
 ## 0.3.0 (2023-05-05)
 
 ### Feat

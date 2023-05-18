@@ -2,14 +2,36 @@ name: deploy-poetry-project
 on: [push]
 jobs:
 
-  test:
+  tests:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
+
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
+
+      - name: Set Poetry config
+        run: |
+          pip install poetry
+          poetry install
+          poetry add pytest
+
+      - name: Test with pytest
+        run: poetry run pytest
+  
+  build-and-publish-pypi:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: build and publish
+        uses: JRubics/poetry-publish@v1.16
+        with:
+          python_version: "3.8"
+          poetry_version: "==1.4.2"
+          pypi_token: ${{ secrets.TOKEN_AUTH_PYPI }}
