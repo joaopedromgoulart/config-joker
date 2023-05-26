@@ -1,3 +1,14 @@
+## 0.6.0 (2023-05-26)
+
+### Feat
+
+- **sources.source.SourceAsDict**: Add config extraction from list of dicts
+- **config.Config**: Add cast string to bool
+
+### Fix
+
+- **requirements**: lower pyyaml version
+
 ## 0.5.0 (2023-05-17)
 
 ### Feat

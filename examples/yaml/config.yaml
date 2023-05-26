@@ -2,3 +2,8 @@ external_config_key:
   - config:
       external_key:
         - key: value
+  - config:
+    - name: key1
+      value: value1
+    - name: key2
+      value: value2

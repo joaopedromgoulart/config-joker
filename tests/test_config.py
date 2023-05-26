@@ -1,9 +1,12 @@
 import pytest
+from unittest.mock import patch
 
-from config_joker.config import Config, Source, SourceResponse, RequiredKeyNotFound
+from config_joker.config import (Config, Source, SourceResponse, RequiredKeyNotFound,
+                                 ValueNotConvertable)
 
 
-def build_default_config() -> Config:
+def build_default_config(source_data: dict = None) -> Config:
+    source_data if source_data else {'key': '1'}
     return Config(
             sources=[
                 MockSource(dict_source={'key': '1'})
@@ -26,6 +29,56 @@ class MockSource(Source):
                 exists=False,
                 value=None
             )
+
+
+class TestCastBool:
+    @pytest.mark.parametrize(
+        'text_value, expected_result',
+        [
+            ('True', True),
+            ('TRUE', True),
+            ('true', True),
+            ('1', True),
+            ('False', False),
+            ('FALSE', False),
+            ('false', False),
+            ('0', False),
+        ]
+    )
+    def test_cast_int_to_bool_ok(self, text_value: str, expected_result: str):
+        config = build_default_config()
+        assert config._cast_bool(text_value) == expected_result
+
+    def test_cast_int_to_bool_nok(self):
+        config = build_default_config()
+        with pytest.raises(ValueNotConvertable):
+            _ = config._cast_bool('wrog-string')
+
+    def test_required_bool(self):
+        config = build_default_config(source_data={'key': 'True'})
+        assert config.required(key='key', value_type=bool) == True
+
+    def test_optional_bool(self):
+        config = build_default_config(source_data={'key': 'True'})
+        assert config.optional(key='key', value_type=bool) == True
+
+
+class TestConvertValue:
+    @pytest.mark.parametrize(
+            'value, value_type, result',
+            [
+                ('True', bool, 'fake-return'),
+                ('True', str, 'True'),
+                (0, bool, False)
+            ]
+    )
+    def test_convert_values(self, value, value_type, result):
+        with patch.object(Config, '_cast_bool') as mock_cast_bool:
+            mock_cast_bool.return_value = 'fake-return'
+            config = build_default_config()
+            assert config._convert_value(value=value, value_type=value_type) == result
+            if value_type == bool and value == True:
+                mock_cast_bool.assert_awaited_with('True')
 
 
 class TestConfigGet:
