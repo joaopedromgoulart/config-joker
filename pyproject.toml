@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "config-joker"
-version = "0.6.0"
+version = "0.7.0"
 description = "A package to ease usage of different configuration conditions in your projects."
 authors = ["Joao Pedro Mendes Goulart"]
 readme = "README.md"
