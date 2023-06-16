@@ -18,7 +18,6 @@ regex = "^2023.3.23"
 PyYAML = "^5.1"
 
 
-
 [tool.commitizen]
 name = "cz_conventional_commits"
 tag_format = "$version"
