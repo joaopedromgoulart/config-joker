@@ -1,3 +1,9 @@
+## 0.7.0 (2023-06-16)
+
+### Feat
+
+- **python-v**: ajuste de versao para 3.7
+
 ## 0.6.0 (2023-05-26)
 
 ### Feat
